@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03b6fca0-eed7-4a37-afce-38c6b70ba08c" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/core/contructs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/core/models/t5/pytorch/spiece.model" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/core/models/t5/safe/spiece.model" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/user_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ai_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ai_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/gpt2_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/gpt2_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/paths.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/paths.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/t5_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/t5_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +105,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739806486176</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1739820708673</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739820708673</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1739820917667</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739820917667</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
