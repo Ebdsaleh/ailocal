@@ -7,3 +7,5 @@
 /src/core/models/openllama/pytorch_model-00002-of-00002.bin
 /src/core/models/t5/pytorch/pytorch_model.bin
 /src/core/models/t5/safe/model.safetensors
+/src/core/models/t5/pytorch/spiece.model
+/src/core/models/t5/safe/spiece.model
