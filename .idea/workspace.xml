@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b6fca0-eed7-4a37-afce-38c6b70ba08c" name="Changes" comment="Working with profile creation, saving and loading, along with conversation history.">
-      <change afterPath="$PROJECT_DIR$/src/core/ai_brain.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/ai_cortex.py" afterDir="false" />
+    <list default="true" id="03b6fca0-eed7-4a37-afce-38c6b70ba08c" name="Changes" comment="Added AiBrain and AiCortex to repository.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ai_brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ai_brain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ai_cortex.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ai_cortex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ai_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ai_profile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739894336885</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added AiBrain and AiCortex to repository.">
+      <option name="closed" value="true" />
+      <created>1739896716456</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739896716456</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +150,7 @@
     <MESSAGE value="Added new python files" />
     <MESSAGE value="Added AI Model configuration files" />
     <MESSAGE value="Working with profile creation, saving and loading, along with conversation history." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working with profile creation, saving and loading, along with conversation history." />
+    <MESSAGE value="Added AiBrain and AiCortex to repository." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added AiBrain and AiCortex to repository." />
   </component>
 </project>

@@ -8,6 +8,7 @@ import json
 from src.core.contructs import Gender, RelationshipType, Mood
 from src.core.paths import profiles_dir, t5_dir
 from src.core.t5_model import T5Model
+from src.core.ai_brain import AiBrain
 
 
 class AiProfile:
@@ -24,6 +25,7 @@ class AiProfile:
         self.history = history if history else []
         self.user_profile = user_profile  # Reference to the UserProfile this AI profile belongs to
         self.model = self.load_model()
+        self.brain = AiBrain(self)
         # Define the profile folder path using the user's name and AI profile name
 
         self.profile_folder = os.path.join(self.user_profile.profile_folder, "ai", self.name)
