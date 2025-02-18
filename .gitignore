@@ -1,0 +1,9 @@
+/src/core/models/gpt2/model.safetensors
+/src/core/models/gpt-neo/pytorch/pytorch_model.bin
+/src/core/models/gpt-neo/safe/model.safetensors
+/src/core/models/falcon/7b/model-00001-of-00002.safetensors
+/src/core/models/falcon/7b/model-00002-of-00002.safetensors
+/src/core/models/openllama/pytorch_model-00001-of-00002.bin
+/src/core/models/openllama/pytorch_model-00002-of-00002.bin
+/src/core/models/t5/pytorch/pytorch_model.bin
+/src/core/models/t5/safe/model.safetensors
