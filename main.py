@@ -1,6 +1,6 @@
 # main.py
 """
-Entry point for the program.
+Entry point for the program. Might refactor a bit later on.
 """
 import os
 from src.core.user_profile import UserProfile
