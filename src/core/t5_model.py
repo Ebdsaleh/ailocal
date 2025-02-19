@@ -40,10 +40,10 @@ class T5Model:
                 inputs.input_ids,
                 max_length=max_length,
                 num_return_sequences=1,
-                temperature=0.9,
-                top_p=0.95,
-                repetition_penalty=2.0,
-                do_sample=True
+                #temperature=0.5,
+                #top_p=0.35,
+                #repetition_penalty=5.0,
+                do_sample=False
             )
 
             response = self.tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
