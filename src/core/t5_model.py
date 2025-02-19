@@ -55,4 +55,4 @@ class T5Model:
             if response:
                 return response
             else:
-                print("Generated empty response, retrying...")
+                print("Generated an invalid response, retrying...")

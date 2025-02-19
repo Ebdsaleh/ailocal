@@ -246,6 +246,7 @@ def run():
     # Load or create an AI profile for the user
     ai_profile = select_or_create_ai_profile(user_profile)
     print(ai_profile.get_profile_summary())
+    ai_profile.initialize_brain_and_cortex()
     # Start chatting with the selected AI profile
     ai_profile.chat()
     #ai_profile.save_profile()

@@ -5,10 +5,12 @@ Each AI profile belongs to a specific user, and it's stored under the user's fol
 """
 import os
 import json
+from datetime import datetime
 from src.core.contructs import Gender, RelationshipType, Mood
 from src.core.paths import profiles_dir, t5_dir
 from src.core.t5_model import T5Model
 from src.core.ai_brain import AiBrain
+from src.core.context import Context
 
 
 class AiProfile:
@@ -25,7 +27,8 @@ class AiProfile:
         self.history = history if history else []
         self.user_profile = user_profile  # Reference to the UserProfile this AI profile belongs to
         self.model = self.load_model()
-        self.brain = AiBrain(self)
+        self.brain = None
+        self.context = None
         # Define the profile folder path using the user's name and AI profile name
 
         self.profile_folder = os.path.join(self.user_profile.profile_folder, "ai", self.name)
@@ -41,6 +44,11 @@ class AiProfile:
         if self.model_name == "T5":
             model = T5Model(model_dir=t5_dir, ai_profile_name=self.name, user_profile_name=self.user_profile)
             return model
+
+    def initialize_brain_and_cortex(self):
+        self.brain = AiBrain(self)
+        self.brain.initialize_cortex()
+        self.context = Context(self)
 
     def load_profile(self):
         """
@@ -98,9 +106,12 @@ class AiProfile:
         """
         Adds the user input and model response to the conversation history.
         """
+        timestamp = datetime.now()
+        user_name = self.user_profile.user_name
         self.history.append({
-            'user_input': user_input,
-            'model_response': model_response
+            f'timestamp': timestamp.isoformat(),
+            f'{user_name}': user_input,
+            f'{self.name}': model_response
         })
 
         # Save history to a separate file (conversation_history.json)
@@ -166,40 +177,7 @@ class AiProfile:
         Initiates a conversation with the AI model, taking user input and using the model to generate a response.
         This method can be customized based on the profile's context (name, relationship type, mood).
         """
-        print(f"{self.name}: Hello! How can I assist you today? (Type 'exit' to quit)")
-
-        while True:
-            user_input = input("You: ")
-            if user_input.lower() == 'exit':
-                print("Ending conversation...")
-                break
-
-            context = self._build_context(user_input)
-            model_response = self.model.generate_response(user_input, context)
-
-            # Debugging
-            print(f"DEBUG: Model response received: {model_response}")
-
-            print(f"{self.name}: {model_response}")
-            self.add_to_history(user_input, model_response)
-
-    def _build_context(self, user_input):
-        context = f"You are {self.name}, who has a {self.relationship_type} relationship with {self.user_profile}. You are currently in a {self.mood} mood, and you're responding in a friendly, playful, and emotionally rich tone. Your goal is to keep the conversation engaging and fun, with a touch of humor if possible."
-        # context += " Respond naturally and engagingly in a friendly, conversational tone."
-
-        history_context = "\n".join(
-            [f"{entry['user_input']}\n{self.name}: {entry['model_response']}" for entry in self.history[-3:]]
-        )
-
-        if history_context:
-            context += "\nHere is your recent conversation history:\n" + history_context
-
-        context += f"\nUser: {user_input}\n{self.name}:"
-
-        # Debugging
-        print(f"DEBUG: Context being sent to model:\n{context}")
-
-        return context
+        self.brain.chat()
 
     def __repr__(self):
         history_length = len(self.history)  # Assuming self.history is a list or similar iterable
@@ -208,10 +186,3 @@ class AiProfile:
                 f"relationship_type={self.relationship_type}, mood={self.mood}, "
                 f"history_length={history_length}, {user_profile_info})")
 
-#  Example of how to use the AiProfile class
-# if __name__ == "__main__":
-#     # Create a profile with the T5 model
-#     profile = AiProfile(model="T5", name="Alice", gender="Female", relationship_type="Friend")
-#
-#     # Start a conversation with the profile
-#     profile.chat()

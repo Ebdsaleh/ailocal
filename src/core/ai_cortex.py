@@ -9,45 +9,22 @@ from src.core.contructs import Tone, Mood
 class AiCortex:
     def __init__(self, brain=None):
         print("AiCortex is initializing")
+        self.brain = brain
+        self.jovial_words = {"nice", "love", "happy", "glad", "warms"}
+        self.somber_words = {"sad", "upset", "down", "cry", "heartbroken"}
+        self.aggressive_words = {"angry", "mad", "furious", "rage", "irritated"}
 
-    def adjust_mood(self, mood:Mood):
-        new_mood = mood
-        return new_mood
+    def adjust_mood(self, mood: Mood) -> Mood:
+        # Placeholder for mood adjustments based on conversation
+        return mood
 
-    def infer_tone(self, text:str):
-        tonal_impressions = self.analyze_text(text)
-        # Check the list for the most dominant tonal impressions in the text
+    def infer_tone(self, text: str) -> Tone:
+        for word in text.split():
+            if word in self.jovial_words:
+                return Tone.JOVIAL
+            elif word in self.somber_words:
+                return Tone.SOMBER
+            elif word in self.aggressive_words:
+                return Tone.AGGRESSIVE
         return Tone.NEUTRAL
-
-    def analyze_text(self, text:str):
-        impressions = []
-        for word in text:
-            if self.matches_tone_type(word):
-                tone = self.get_tone_type(word)
-                impressions.append(tone)
-        return impressions
-
-    def matches_tone_type(self, text:str):
-        match = False
-        happy_words = ["nice", "love", "happy", "glad", "warms"]
-        for word in happy_words:
-            if word in text:
-                match = True
-                return match
-        return match
-
-    def get_tone_type(self, text:str):
-        tone_type = Tone.NEUTRAL
-        happy_words = ["nice", "love", "happy", "glad", "warms"]
-        for word in happy_words:
-            if word in text:
-                tone_type = Tone.JOVIAL
-        return tone_type.name
-
-
-
-
-
-
-
 
