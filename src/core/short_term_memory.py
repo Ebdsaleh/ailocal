@@ -13,3 +13,7 @@ class ShortTermMemory(Memory):
         if len(self.conversation_history) > self.max_history:
             self.conversation_history.pop(0)
 
+    def add_message_block(self, sender, message, recipient, response, timestamp=None):
+        super().add_message_block(sender, message, recipient, response, timestamp)
+        if len(self.conversation_history) > self.max_history:
+            self.conversation_history.pop(0)

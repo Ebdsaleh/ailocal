@@ -30,7 +30,7 @@ class T5Model:
             context = "Answer as a helpful AI assistant:"
 
         # Prepare input text
-        input_text = f"### CONTEXT:\n{context}\n\n### USER:\n{prompt}\n\n### RESPONSE:"
+        input_text = f"### CONTEXT:\n{context}\n\n### USER: {self.user_profile_name} asks: {prompt}\n\n### RESPONSE: Please reply appropriately."
 
         inputs = self.tokenizer(input_text, return_tensors="pt", padding=True, truncation=True).to(self.device)
 
@@ -40,9 +40,9 @@ class T5Model:
                 inputs.input_ids,
                 max_length=max_length,
                 num_return_sequences=1,
-                temperature=0.7,
+                temperature=0.9,
                 top_p=0.95,
-                repetition_penalty=1.2,
+                repetition_penalty=2.0,
                 do_sample=True
             )
 

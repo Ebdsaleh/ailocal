@@ -42,7 +42,7 @@ class AiProfile:
 
     def load_model(self):
         if self.model_name == "T5":
-            model = T5Model(model_dir=t5_dir, ai_profile_name=self.name, user_profile_name=self.user_profile)
+            model = T5Model(model_dir=t5_dir, ai_profile_name=self.name, user_profile_name=self.user_profile.user_name)
             return model
 
     def initialize_brain_and_cortex(self):
@@ -178,6 +178,30 @@ class AiProfile:
         This method can be customized based on the profile's context (name, relationship type, mood).
         """
         self.brain.chat()
+
+    def get_name(self):
+        return self.name
+
+    def get_gender(self):
+        return self.gender
+
+    def get_user_profile(self):
+        return self.user_profile
+
+    def get_user_profile_name(self):
+        return self.user_profile.user_name
+
+    def get_relationship_type(self):
+        return self.relationship_type
+
+    def get_mood(self):
+        return self.mood
+
+    def get_context(self):
+        return self.context
+
+    def add_to_context_history(self, user_message, ai_message, timestamp=None):
+        self.context.add_to_history(user_message, ai_message, timestamp)
 
     def __repr__(self):
         history_length = len(self.history)  # Assuming self.history is a list or similar iterable

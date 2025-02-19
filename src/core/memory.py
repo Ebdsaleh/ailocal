@@ -14,6 +14,17 @@ class Memory:
             {"timestamp": timestamp, "sender": sender, "message": message}
         )
 
+    def add_message_block(self, sender, message, recipient, response, timestamp=None):
+        if timestamp is None:
+            timestamp = datetime.now().isoformat()
+        self.conversation_history.append(
+            {
+                "timestamp": timestamp,
+                f"{sender}": message,
+                f"{recipient}":  response,
+            }
+        )
+
     def get_conversation_history(self, limit=None):
         return self.conversation_history[-limit:] if limit else self.conversation_history
 
