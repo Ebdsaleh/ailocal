@@ -30,10 +30,26 @@ class TrainingDataGui:
         return []
 
     def save_data(self):
-        existing_data = self.load_existing_data()
+        """
+        Save the collected data to the training data file.
+        """
+        # Load existing data, if any
+        if os.path.exists(self.training_file):
+            try:
+                with open(self.training_file, "r") as f:
+                    existing_data = json.load(f)
+            except json.JSONDecodeError:
+                existing_data = []
+        else:
+            existing_data = []
+
+        # Append new history and clear it after saving
         existing_data.extend(self.history)
         with open(self.training_file, "w") as f:
             json.dump(existing_data, f, indent=4)
+
+        # Clear history after saving to avoid duplicates
+        self.history.clear()
 
     def add_entry(self, user_input, ai_response):
         timestamp = datetime.now().isoformat()
