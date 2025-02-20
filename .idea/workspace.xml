@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b6fca0-eed7-4a37-afce-38c6b70ba08c" name="Changes" comment="Updated some files and adjusted model settings...">
+    <list default="true" id="03b6fca0-eed7-4a37-afce-38c6b70ba08c" name="Changes" comment="Tuning the model">
+      <change afterPath="$PROJECT_DIR$/src/core/gui/training_data_gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/training_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/context.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/paths.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/paths.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/t5_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/t5_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +63,11 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nadir\repos\python\ailocal\src\core\gui" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -170,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739982141426</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Tuning the model">
+      <option name="closed" value="true" />
+      <created>1739985365018</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1739985365018</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -184,6 +202,7 @@
     <MESSAGE value="Added README.md file" />
     <MESSAGE value="Added context.py, long_term_memory.py, short_term_memory.py, memory.py. Updated t5_model.py, ai_brain.py, ai_profile.py, ai_cortex.py. Still WIP, getting there slowly." />
     <MESSAGE value="Updated some files and adjusted model settings..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated some files and adjusted model settings..." />
+    <MESSAGE value="Tuning the model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuning the model" />
   </component>
 </project>

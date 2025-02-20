@@ -1,8 +1,10 @@
 # src/core/t5_model.py
+import os.path
+
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import torch
 import re
-
+from src.core.paths import t5_adapters_dir
 
 class T5Model:
     def __init__(self, model_dir, ai_profile_name="", user_profile_name="", device="cuda" if torch.cuda.is_available() else "cpu"):
@@ -17,6 +19,30 @@ class T5Model:
         self.model.to(self.device)
         self.ai_profile_name = ai_profile_name
         self.user_profile_name = user_profile_name
+        self.adapters_path = t5_adapters_dir
+        self.active_adapters = []
+
+    def load_adapter(self, file_name):
+        """
+            Load a specific adapter into the model.
+            :param file_name: name of the adapter file, the path will already be known to the model.
+        """
+        adapter_path = os.path.join(self.adapters_path, file_name)
+        self.model.load_adapter(adapter_path)  # Load the adapter using Hugging Face's API
+        self.active_adapters.append(adapter_path)
+        print(f"Loaded adapter: {adapter_path}")
+
+    def load_adapters(self):
+        """
+        Load all adapters from the adapter directory and set them to active.
+        """
+        for adapter_file in os.listdir(self.adapters_path):
+            if adapter_file.endswith(".adapter"):
+                adapter_path = os.path.join(self.adapters_path, adapter_file)
+                self.load_adapter(adapter_path)
+        # Activate all loaded adapters
+        if self.active_adapters:
+            self.model.set_active_adapters(self.active_adapters)
 
     def generate_response(self, prompt, context="", max_length=600):
         """

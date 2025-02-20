@@ -8,6 +8,9 @@ from src.core.user_profile import UserProfile
 from src.core.ai_profile import AiProfile
 from src.core.paths import profiles_dir
 from src.core.contructs import Gender, RelationshipType, Mood
+from src.core.training_data import TrainingData
+from src.core.gui.training_data_gui import TrainingDataGui
+
 
 def check_for_existing_user_profile():
     """
@@ -242,15 +245,50 @@ def create_ai_profile(user_profile):
 
 
 def run():
-    user_profile = check_or_create_user_profile()
-    # Load or create an AI profile for the user
-    ai_profile = select_or_create_ai_profile(user_profile)
-    print(ai_profile.get_profile_summary())
-    ai_profile.initialize_brain_and_cortex()
-    # Start chatting with the selected AI profile
-    ai_profile.chat()
+    while True:
+        choice = input("Enter (1) to chat with AI, (2) to train data, (3) training data gui, (4) to quit the program: ")
+        if choice.isdigit():
+            if choice == "1":
+                user_profile = check_or_create_user_profile()
+                # Load or create an AI profile for the user
+                ai_profile = select_or_create_ai_profile(user_profile)
+                print(ai_profile.get_profile_summary())
+                ai_profile.initialize_brain_and_cortex()
+                # Start chatting with the selected AI profile
+                ai_profile.chat()
+            elif choice == "2":
+                data_file_name = input("Enter the filename of data file(include the .json suffix): ")
+                if data_file_name == "":
+                    data_file_name = "training_data.json"
+                elif not data_file_name.endswith(".json"):
+                    data_file_name += ".json"
+                train_data(data_file_name)
+            elif choice == "3":
+                data_file_name = input("Enter the filename of data file(include the .json suffix): ")
+                if data_file_name == "":
+                    data_file_name = "training_data.json"
+                elif not data_file_name.endswith(".json"):
+                    data_file_name += ".json"
+                train_data_gui(data_file_name)
+            elif choice == "4":
+                print("exiting program, goodbye!")
+                break
+            else:
+                print("Invalid number detected.")
+        else:
+            print("Invalid input detected, you must enter a number.")
     #ai_profile.save_profile()
     #user_profile.save_profile()
+
+
+def train_data(data_file_name):
+    data_training = TrainingData(data_file_name)
+    data_training.run()
+
+def train_data_gui(data_file_name):
+    data_training = TrainingDataGui(data_file_name)
+    data_training.launch_gui()
+
 
 def main():
     print("AI Local launched...")

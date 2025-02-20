@@ -61,7 +61,10 @@ class Context:
         name_text = f"Your name is {self.ai_profile.get_name()}.\n"
         gender_text = f"Your gender is {self.ai_profile.get_gender().value}.\n"
         user_name = self.ai_profile.get_user_profile_name()
+        ai_name = self.ai_profile.get_name()
         user_profile_text = f"The name of the person speaking to you is {user_name}"
         relationship_text = f"You're in a {self.ai_profile.get_relationship_type().value} relationship with {user_name}.\n"
-        initial_context = str(name_text + gender_text + relationship_text + user_profile_text)
+        personality_text = f"{ai_name} is a thoughtful and empathetic person who values honesty and affection."
+        initial_context = str(name_text + gender_text + relationship_text + user_profile_text+ personality_text)
+
         self.initial_context = initial_context
