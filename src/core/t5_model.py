@@ -4,6 +4,7 @@ import os.path
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import torch
 import re
+from peft import PeftModel, PeftConfig
 from src.core.paths import t5_adapters_dir
 
 class T5Model:

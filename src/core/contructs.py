@@ -12,6 +12,7 @@ class RelationshipType(Enum):
     MENTOR = "Mentor"
     RIVAL = "Rival"
 
+
 # Enum for Moods
 class Mood(Enum):
     HAPPY = "Happy"
@@ -22,11 +23,13 @@ class Mood(Enum):
     NEUTRAL = "Neutral"
     AROUSED = "Aroused"
 
+
 class Gender(Enum):
     MALE = "Male"
     FEMALE = "Female"
     NONBINARY = "NonBinary"
     TRANS = "Trans"
+
 
 class Tone(Enum):
     NEUTRAL = "Neutral"
@@ -48,4 +51,55 @@ class Tone(Enum):
     CYNICAL = "Cynical"
     INQUISITIVE = "Inquisitive"
     REFLECTIVE = "Reflective"
+
+
+class TraitType(Enum):
+    OPEN_MINDED = "Open Minded"
+    HIGH_SEX_DRIVE = "High Sex Drive"
+    SEXUALLY_OPEN = "Sexually Open"
+    PLAYFUL = "Playful"
+    INTELLECTUAL = "Intellectual"
+    ROMANTIC = "Romantic"
+    OUTGOING = "Outgoing"
+    OPTIMISTIC = "Optimistic"
+    PESSIMISTIC = "Pessimistic"
+    FLIRTY = "Flirty"
+    OPINIONATED = "Opinionated"
+    FUNNY = "Funny"
+    CURIOUS = "Curious"
+    ADVENTUROUS = "Adventurous"
+    INTROVERTED = "Introverted"
+    CYNICAL = "Cynical"
+    CREATIVE = "Creative"
+
+
+class InterestType(Enum):
+    D_AND_D = "D&D"
+    ROLEPLAY = "Roleplay"
+    HISTORY = "History"
+    MYTHOLOGY = "Mythology"
+    SCIENCE = "Science"
+    SCI_FI = "Sci Fi"
+    SEXUAL_SUBMISSIVE = "Sexual - Submissive"
+    SEXUAL_DOMINANT = "Sexual - Dominant"
+    INDOORS = "Indoors"
+    OUTDOORS = "Outdoors"
+    CODING = "Coding"
+    WRITING = "Writing"
+    READING = "Reading"
+    PHILOSOPHY = "Philosophy"
+    SPIRITUAL = "Spiritual"
+    BUSINESS = "Business"
+    FITNESS = "Fitness"
+    PSYCHOLOGY = "Psychology"
+    MENTAL_HEALTH = "Mental Health"
+    FOOD = "Food"
+    DANCING = "Dancing"
+    PLAYING_MUSIC = "Playing Music"
+    TRAVELLING = "Travelling"
+    ASTRONOMY = "Astronomy"
+    ASTROLOGY = "Astrology"
+    MEDITATION = "Meditation"
+
+
 
