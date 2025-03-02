@@ -4,12 +4,16 @@ Entry point for the program. Might refactor later.
 """
 import os
 import json
+
+from accelerate.commands.config.update import description
+
 from src.core.user_profile import UserProfile
 from src.core.ai_profile import AiProfile
 from src.core.paths import profiles_dir
 from src.core.contructs import Gender, RelationshipType, Mood
 from src.core.training_data import TrainingData
 from src.core.gui.training_data_gui import TrainingDataGui
+from src.core.adapter_manager import AdapterManager
 
 
 def check_for_existing_user_profile():
@@ -246,7 +250,7 @@ def create_ai_profile(user_profile):
 
 def run():
     while True:
-        choice = input("Enter (1) to chat with AI, (2) to train data, (3) training data gui, (4) to quit the program: ")
+        choice = input("Enter (1) to chat with AI, (2) to train data, (3) training data gui,(4) to quit the program: ")
         if choice.isdigit():
             if choice == "1":
                 user_profile = check_or_create_user_profile()
@@ -254,8 +258,23 @@ def run():
                 ai_profile = select_or_create_ai_profile(user_profile)
                 print(ai_profile.get_profile_summary())
                 ai_profile.initialize_brain_and_cortex()
-                # Start chatting with the selected AI profile
-                ai_profile.chat()
+                user_input = input("Enter (1) to continue to chat with AI, (2) to create an adapter: ")
+                if user_input =="1":
+                    # Start chatting with the selected AI profile
+                    ai_profile.chat()
+                elif user_input == "2":
+                    # Create a new adapter inside the main.py file
+                    print("Create a new adapter....")
+                    adapter_name = input("Enter the new adapter name: ")
+                    model = ai_profile.model
+                    new_adapter = ai_profile.adapter_manager.create_new_adapter(adapter_name, model)
+                    file_name = input("Enter the name of the training data file: ")
+                    training_data = new_adapter.prepare_data(model, file_name)
+                    print(type(training_data))
+                    new_adapter.train_adapter(model, training_data)
+
+                else:
+                    print("Invalid input detected.")
             elif choice == "2":
                 data_file_name = input("Enter the filename of data file(include the .json suffix): ")
                 if data_file_name == "":
@@ -285,9 +304,12 @@ def train_data(data_file_name):
     data_training = TrainingData(data_file_name)
     data_training.run()
 
+
 def train_data_gui(data_file_name):
     data_training = TrainingDataGui(data_file_name)
     data_training.launch_gui()
+
+
 
 
 def main():

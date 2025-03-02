@@ -4,8 +4,9 @@ import os.path
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import torch
 import re
-from peft import PeftModel, PeftConfig
+from peft import PeftModel, PeftConfig, get_peft_model
 from src.core.paths import t5_adapters_dir
+
 
 class T5Model:
     def __init__(self, model_dir, ai_profile_name="", user_profile_name="", device="cuda" if torch.cuda.is_available() else "cpu"):
@@ -22,16 +23,44 @@ class T5Model:
         self.user_profile_name = user_profile_name
         self.adapters_path = t5_adapters_dir
         self.active_adapters = []
+        self.active_peft_models = {}
 
-    def load_adapter(self, file_name):
+    def check_for_cuda(self):
+        print(f"Cuda is available?: {torch.cuda.is_available()}")
+        if torch.cuda.is_available():
+            print(f"Cuda device to use: {torch.cuda.get_device_name(0)}")
+            print(f"Cuda version found: {torch.version.cuda}")  # Should return '11.8'
+            print(f"Confirmed device is set to {self.device}")
+
+    def eval(self):
+        self.model.eval()
+
+    def train(self):
+        self.model.train()
+
+    def load_adapter(self, full_file_name=None, category: str = None):
         """
-            Load a specific adapter into the model.
-            :param file_name: name of the adapter file, the path will already be known to the model.
+        Load a specific adapter into the model.
+        :param full_file_name: name of the adapter file, the path will already be known to the model.
+        :param category: used for storing the peft_model in the self.active_peft_models dict
         """
-        adapter_path = os.path.join(self.adapters_path, file_name)
-        self.model.load_adapter(adapter_path)  # Load the adapter using Hugging Face's API
-        self.active_adapters.append(adapter_path)
-        print(f"Loaded adapter: {adapter_path}")
+        if full_file_name is None or full_file_name.isdigit():
+            return False
+        if category is None or category.isdigit():
+            return False
+
+        # Load the adapter using Hugging Face's API
+        adapter = PeftModel.from_pretrained(self.model, full_file_name, safe_serialization=True)
+        self.model.load_adapter(full_file_name)  # Load the adapter using Hugging Face's API
+        self.active_adapters.append(full_file_name)
+        self.active_peft_models[category] = adapter
+
+        # Freeze the weights of the original model
+        for param in self.model.parameters():
+            param.requires_grad = False
+
+        print(f"Loaded adapter: {full_file_name}, category: {category}")
+        return True
 
     def load_adapters(self):
         """

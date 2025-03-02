@@ -6,6 +6,8 @@ Each AI profile belongs to a specific user, and it's stored under the user's fol
 import os
 import json
 from datetime import datetime
+
+from src.core.adapter_manager import AdapterManager
 from src.core.contructs import Gender, RelationshipType, Mood
 from src.core.paths import profiles_dir, t5_dir
 from src.core.t5_model import T5Model
@@ -29,6 +31,7 @@ class AiProfile:
         self.model = self.load_model()
         self.brain = None
         self.context = None
+        self.adapter_manager =AdapterManager()
         # Define the profile folder path using the user's name and AI profile name
 
         self.profile_folder = os.path.join(self.user_profile.profile_folder, "ai", self.name)
@@ -43,6 +46,7 @@ class AiProfile:
     def load_model(self):
         if self.model_name == "T5":
             model = T5Model(model_dir=t5_dir, ai_profile_name=self.name, user_profile_name=self.user_profile.user_name)
+            model.check_for_cuda()
             return model
 
     def initialize_brain_and_cortex(self):
